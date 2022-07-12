@@ -1,9 +1,9 @@
 # Proyecto Final de DS9 (Sistema de Venta de Servicios)
 
-##Descripcion
+## Descripcion
 En este proyecto se estara desarrollando una Pataforma de venta de servicios con integracion de sistema de Pago por Yappy.
 
-##Tenologias utilizadas
+## Tenologias utilizadas
 -Node JS
 -Express JS
 -MongoDB
