@@ -124,7 +124,7 @@ app.post("/services",(req, res)=> {
   };
   try {
     Service.create(serviceData, (err, docs) => {
-      //console.log(docs);
+      console.log(docs);
       if (err) {
         res.json({ Message: "Something bad :(", type: err, create: false });
       } else {
