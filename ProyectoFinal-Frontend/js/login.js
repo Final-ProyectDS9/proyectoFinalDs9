@@ -35,6 +35,8 @@
                     else {
                         App.htmlElements.message.className=('alert alert-success');
                         App.htmlElements.message.innerHTML="Usuario Logueado";
+                        localStorage.setItem("id_user",data.docs._id);
+                        localStorage.setItem("user_name",data.docs.username);
                     }
                     console.log(data);
                 }catch(error){
