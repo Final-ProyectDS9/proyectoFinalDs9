@@ -38,21 +38,31 @@
                 let buyThings=[];
                 if(e.target.classList.contains('add-cart')){
                     let selectProduct=e.target.parentElement.parentElement.parentElement
-                    readTheContent(selectProduct);
+                    // readTheContent(selectProduct);
                     //console.log(e.target.parentElement.parentElement.parentElement);   
-                }
-                function readTheContent(product){
-                    const infoProduct = {
-                        image: product.querySelector('#service_img').src,
-                        title: product.querySelector('#service_name').textContent,
-                        price: product.querySelector('#price').textContent,
-                        id: product.querySelector('#card_id').textContent,
-                        amount: 1
+                    const cardContent = async(product)=>{
+                        const infoProduct = {
+                            image: product.querySelector('#service_img').src,
+                            title: product.querySelector('#service_name').textContent,
+                            price: product.querySelector('#price').textContent,
+                            id: product.querySelector('#card_id').textContent,
+                            amount: 1
+                        }
+                        console.log(infoProduct.price)
+                        const {data}= await axios.get('http://localhost:3000/create-payment/'+infoProduct.price);
+                        // window.location.href = data.data.links[1].href;
+                        const paymentProduct = await axios.post('http://localhost:3000/create-payment')
+                        console.log(paymentProduct.data.data.links[1].href);
+                        console.log(data.status);
+                        console.log(infoProduct);
+                        window.location.href=paymentProduct.data.data.links[1].href
+                        //window.open(paymentProduct.data.data.links[1].href, "Diseño Web", "width=700, height=800")
+                        buyThings=[...buyThings,infoProduct]
+                        loadHtml();
                     }
-                    buyThings=[...buyThings,infoProduct]
-                    loadHtml();
-                    console.log(infoProduct);
+                    cardContent(selectProduct);
                 }
+
                 function loadHtml(){
                     buyThings.forEach(product =>{
                         const {image,title,price,id,amount}=product;
@@ -69,8 +79,6 @@
                         `;
                         App.htmlElements.containerBuyCart.appendChild(row)
                     });
-                   
-                   
                 }
             }
         },
