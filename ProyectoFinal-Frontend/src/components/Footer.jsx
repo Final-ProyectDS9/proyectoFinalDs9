@@ -12,7 +12,7 @@ export default function Footer(){
             <div className="footer py-4" style={{ background: '#D9D9D9' }}>
                 <Container className='d-flex justify-content-between'>
                     <div className="">
-                        <h3>SIGMA S.A.<br /><span className="fs-6">Tu markeplace para servicios</span></h3>
+                        <h3 ><span className="font-weight-bold">SIGMA S.A.</span><br /></h3><span className="fs-6">Tu markeplace para servicios</span>
                     </div>
 
                     <div className='social-media'>

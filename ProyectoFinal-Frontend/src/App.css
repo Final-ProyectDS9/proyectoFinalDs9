@@ -218,3 +218,16 @@
 .p-5 .btn:hover{
   background-color:#fab801 !important;
 }
+
+.pal-hover{
+  border-radius: 5px;
+  transition:background .2s;
+}
+
+.pal-hover:hover{
+  background: #e9ecef;
+}
+
+.carrito{
+  width: 20rem;
+}

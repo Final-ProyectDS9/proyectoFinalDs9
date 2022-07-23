@@ -15,7 +15,7 @@ function ModeloRegistrarServicios(){
 
             <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
                 <Form.Label>Descripción del Servicio</Form.Label>
-                <Form.Control as='textarea' rows={3} className='border-0'/>
+                <Form.Control as='textarea' rows={3} className='border-0' placeholder='Transformaré tu negocio en un e-commerce...'/>
             </Form.Group>
             
             <Form.Group className="mb-3" controlId="formBasicEmail">

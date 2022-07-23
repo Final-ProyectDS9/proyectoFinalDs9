@@ -8,8 +8,17 @@ import {FaUser} from 'react-icons/fa';
 import {AiFillSetting, AiOutlineLogout} from 'react-icons/ai';
 import {BsFillChatLeftFill} from 'react-icons/bs';
 import ImgPerfil from './ImgPerfil';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useState } from 'react';
+import MyVerticallyCenteredModal from './MyVerticallyCenteredModal';
+import ModalRegisterCategory from './ModalRegisterCategory';
+
 
 export default function NavigationBar(props){
+    const [modalShow, setModalShow] = useState(false);
+    const [modalCategoria, setModalCategoria] = useState(false);
+
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -32,10 +41,25 @@ export default function NavigationBar(props){
                                     Ver todo
                                 </NavDropdown.Item>
                             </NavDropdown>
+                            <DropdownButton id="dropdown-basic-button" title='Carrito' variant="danger">
+                                <Dropdown.Item href="#/action-1">
+                                    <div className='carrito'>
+                                        <div className='img-carrito'>
+                                            <img src='https://blog.aulaformativa.com/wp-content/uploads/2014/04/crear-app-movil.jpg' />
+                                        </div>
+                                        <div className=''>
+                                            <h4>Titulo de articulo</h4>
+                                            <span>Descripción</span>
+                                        </div>
+                                    </div>
+                                </Dropdown.Item>
+                                
+                            </DropdownButton>
+                            
                         </Nav>
-                        <div className="justify-content-end ">
+                        <div className="justify-content-end ">       
                             <Nav className='perfildown'>
-                            <NavDropdown
+                            <NavDropdown className="pal-hover"
                                     title={
                                         <div className='d-flex'>
                                             <div className='px-2'>
@@ -49,10 +73,10 @@ export default function NavigationBar(props){
                                     }
                                  id="">
                                 <NavDropdown.Item><FaUser/> Perfil</NavDropdown.Item>
-                                <NavDropdown.Item><AiFillSetting/> Configuración</NavDropdown.Item>
-                                <NavDropdown.Item><BsFillChatLeftFill/> Chats</NavDropdown.Item>
+                                <NavDropdown.Item onClick={()=>setModalShow(true)}><AiFillSetting/> Configuración</NavDropdown.Item>
+                                <NavDropdown.Item onClick={()=>setModalCategoria(true)}><BsFillChatLeftFill/> Agregar Categoria</NavDropdown.Item>
                                 <NavDropdown.Divider/>
-                                <NavDropdown.Item><AiOutlineLogout/> Cerrar Sesión</NavDropdown.Item>
+                                <NavDropdown.Item className='text-danger'><AiOutlineLogout/> Cerrar Sesión</NavDropdown.Item>
                             </NavDropdown>
                                 
                             
@@ -65,6 +89,16 @@ export default function NavigationBar(props){
             <section>
                 <Outlet />
             </section>
+
+            <MyVerticallyCenteredModal 
+                show={modalShow}
+                onHide={()=>setModalShow(false)}
+            />
+
+            <ModalRegisterCategory
+                show={modalCategoria}
+                onHide={()=>setModalCategoria(false)}
+            />
         </>
     )
 }

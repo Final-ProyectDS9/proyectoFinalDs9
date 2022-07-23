@@ -2,6 +2,12 @@ import Container from 'react-bootstrap/Container';
 import CardExample from './CardExample';
 import Button from 'react-bootstrap/esm/Button';
 import CategoryCard from './CategoryCard';
+import PauseOnHover from '../classes/PauseOnHover';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import CenterMode from '../classes/AutoPlay';
+import { Link } from 'react-router-dom';
+
 
 function SectionCards(){
     const categ = [
@@ -30,23 +36,59 @@ function SectionCards(){
             img:'https://conviertemas.com/wp-content/uploads/2021/11/Miniaturas-CMAS.png'
         }
     ]
+
+    const infoTemporal = [
+        {
+            portada:'https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/480/public/media/image/2019/03/javascript.jpg?itok=-I5_Pjbe',
+            perfil:'https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
+            nombre:'Jostin Gamboa ',
+            cargo:'Software Dev',
+            desc:'Some quick example text to build on the card title and make up thebulk of the cards content.',
+            precio:'25.00'
+        },
+        {
+            portada:'https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/480/public/media/image/2019/03/javascript.jpg?itok=-I5_Pjbe',
+            perfil:'https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
+            nombre:'Jostin Gamboa ',
+            cargo:'Software Dev',
+            desc:'Some quick example text to build on the card title and make up thebulk of the cards content.',
+            precio:'25.00'
+        },
+        {
+            portada:'https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/480/public/media/image/2019/03/javascript.jpg?itok=-I5_Pjbe',
+            perfil:'https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80',
+            nombre:'Jostin Gamboa ',
+            cargo:'Software Dev',
+            desc:'Some quick example text to build on the card title and make up thebulk of the cards content.',
+            precio:'25.00'
+        }
+    ]
+
+    useEffect(function () {
+        buscarServicios();
+    },[]);
+
+    const buscarServicios = async e=>{
+        let url = 'https://pokeapi.co/api/v2/pokemon/ditto';
+        e.preventDefault();
+        const resp = await axios.get(url)
+        .then(resp=> setServicios(resp.data))
+        console.log(resp.data);
+        // document.write(resp.data);
+    }
+
+    let key=0;
+
     return(
         <div className="" style={{background: "#EBEBEB"}}>
             <Container>
                 <h2 className='gr-text text-center p-4'>servicios OFERTADOS<hr/></h2>
-                <div className='d-flex justify-content-between flex-wrap'>
-                    <CardExample/>
-                    <CardExample/>
-                    <CardExample/>
-                    <CardExample/>
-                    <CardExample/>
-                    <CardExample/>
-                    <CardExample/>
-                    <CardExample/>
-                </div>
+                <PauseOnHover/>
 
-                <div className='d-flex justify-content-center'>
-                    <Button variant="dark" className='text-uppercase'>Conoce Más</Button>
+                <div className='d-flex justify-content-center my-5'>
+                    <Link to='/servicios'>
+                        <Button variant="dark" className='text-uppercase'>Conoce Más</Button>
+                    </Link>
                 </div>
 
                 <h2 className='gr-text text-center p-4'>Categorias<hr/></h2>
@@ -65,7 +107,7 @@ function SectionCards(){
             <section style={{ background: "#fff" }}>
                 <Container>
                     <h2 className='gr-text text-center p-4'>Camaroncitos<hr /></h2>
-
+                    <CenterMode/>
                 </Container>
             </section>
         </div>

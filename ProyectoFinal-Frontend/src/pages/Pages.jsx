@@ -4,6 +4,7 @@ import Homepage from "./Homepage";
 import Login from "./Login";
 import Registrar from "./Registrar";
 import RegistrarServicios from "./RegistrarServicios";
+import AllServices from "./AllServices";
 
 
 function Pages(){
@@ -14,6 +15,7 @@ function Pages(){
             <Route path="login" element={<Login />} />
             <Route path="registro" element={<Registrar />} />
             <Route path='registrarservicios' element={<RegistrarServicios/>}/>
+            <Route path="servicios" element={<AllServices/>}/>
         </Routes>
     )
 }
